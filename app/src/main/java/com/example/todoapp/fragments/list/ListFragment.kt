@@ -40,23 +40,14 @@ class ListFragment : Fragment(), SearchView.OnQueryTextListener {
         _binding = FragmentListBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = this
         binding.mSharedViewModel = mSharedViewModel
-
-        // Setup RecyclerView
         setupRecyclerview()
-
-        // Observe LiveData
         mToDoViewModel.getAllData.observe(viewLifecycleOwner, { data ->
             mSharedViewModel.checkIfDatabaseEmpty(data)
             adapter.setData(data)
             binding.recyclerView.scheduleLayoutAnimation()
         })
-
-        // Set Menu
         setHasOptionsMenu(true)
-
-        // Hide soft keyboard
         hideKeyboard(requireActivity())
-
         return binding.root
     }
 
@@ -64,20 +55,16 @@ class ListFragment : Fragment(), SearchView.OnQueryTextListener {
         val recyclerView = binding.recyclerView
         recyclerView.adapter = adapter
         recyclerView.layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
-
-        // Swipe to Delete
-        swipeToDelete(recyclerView)
+        swipeToDelete(recyclerView) //свайп для удаления
     }
 
     private fun swipeToDelete(recyclerView: RecyclerView) {
         val swipeToDeleteCallback = object : SwipeToDelete() {
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
                 val deletedItem = adapter.dataList[viewHolder.adapterPosition]
-                // Delete Item
-                mToDoViewModel.deleteItem(deletedItem)
+                mToDoViewModel.deleteItem(deletedItem) //удаление Item
                 adapter.notifyItemRemoved(viewHolder.adapterPosition)
-                // Restore Deleted Item
-                restoreDeletedData(viewHolder.itemView, deletedItem)
+                restoreDeletedData(viewHolder.itemView, deletedItem) //восстановление удаленных объектов
             }
         }
         val itemTouchHelper = ItemTouchHelper(swipeToDeleteCallback)
@@ -138,8 +125,7 @@ class ListFragment : Fragment(), SearchView.OnQueryTextListener {
         })
     }
 
-    // Show AlertDialog to Confirm Removal of All Items from Database Table
-    private fun confirmRemoval() {
+    private fun confirmRemoval() { //показать AlertDialog для подтверждения удаления всех элементов из таблицы базы данных
         val builder = AlertDialog.Builder(requireContext())
         builder.setPositiveButton("Yes") { _, _ ->
             mToDoViewModel.deleteAll()

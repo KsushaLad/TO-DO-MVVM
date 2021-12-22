@@ -24,15 +24,9 @@ class AddFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        // Inflate the layout for this fragment
         _binding = FragmentAddBinding.inflate(layoutInflater, container, false)
-
-        // Set Menu
         setHasOptionsMenu(true)
-
-        // Spinner Item Selected Listener
-        binding.prioritiesSpinner.onItemSelectedListener = mSharedViewModel.listener
-
+        binding.prioritiesSpinner.onItemSelectedListener = mSharedViewModel.listener //прослушиватель выбранного элемента
         return binding.root
     }
 
@@ -54,17 +48,14 @@ class AddFragment : Fragment() {
 
         val validation = mSharedViewModel.verifyDataFromUser(mTitle, mDescription)
         if(validation){
-            // Insert Data to Database
-            val newData = ToDoData(
+            val newData = ToDoData( //вставка данных в БД
                 0,
                 mTitle,
                 mSharedViewModel.parsePriority(mPriority),
-                mDescription
-            )
+                mDescription)
             mToDoViewModel.insertData(newData)
             Toast.makeText(requireContext(), "Successfully added!", Toast.LENGTH_SHORT).show()
-            // Navigate Back
-            findNavController().navigate(R.id.action_addFragment_to_listFragment)
+            findNavController().navigate(R.id.action_addFragment_to_listFragment) //обратная навигация
         }else{
             Toast.makeText(requireContext(), "Please fill out all fields.", Toast.LENGTH_SHORT).show()
         }

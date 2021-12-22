@@ -15,7 +15,7 @@
         android:padding="24dp"
         tools:context=".fragments.update.UpdateFragment">
 
-        <EditText
+        <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/current_title_et"
             android:layout_width="0dp"
             android:layout_height="60dp"
@@ -46,7 +46,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/current_title_et" />
 
-        <EditText
+        <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/current_description_et"
             android:layout_width="0dp"
             android:layout_height="0dp"

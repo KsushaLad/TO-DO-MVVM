@@ -13,17 +13,16 @@ import com.example.todoapp.data.models.ToDoData
 
 class SharedViewModel(application: Application): AndroidViewModel(application) {
 
-    /** ============================= List Fragment ============================= */
 
-    val emptyDatabase: MutableLiveData<Boolean> = MutableLiveData(false)
+    val emptyDatabase: MutableLiveData<Boolean> = MutableLiveData(false) //Список заметок
 
     fun checkIfDatabaseEmpty(toDoData: List<ToDoData>){
         emptyDatabase.value = toDoData.isEmpty()
     }
 
-    /** ============================= Add/Update Fragment ============================= */
 
-    val listener: AdapterView.OnItemSelectedListener = object :
+
+    val listener: AdapterView.OnItemSelectedListener = object :  //Добавление или редактирование заметки
         AdapterView.OnItemSelectedListener{
         override fun onNothingSelected(p0: AdapterView<*>?) {}
         override fun onItemSelected(
