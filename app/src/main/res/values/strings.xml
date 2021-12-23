@@ -13,6 +13,15 @@
     <string name="add">Add</string>
     <string name="save">Save</string>
     <string name="delete">Delete</string>
+    <string name="successfully_removed_everything">Successfully Removed Everything!</string>
+    <string name="no">No</string>
+    <string name="delete_everything">Delete everything?</string>
+    <string name="are_you_sure_you_want_to_remove_everything">Are you sure you want to remove everything?</string>
+    <string name="yes">Yes</string>
+    <string name="successfully_updated">Successfully updated!</string>
+    <string name="please_fill_out_all_fields">Please fill out all fields.</string>
+    <string name="successfully_removed">Successfully Removed:</string>
+
 
     <string-array name="priorities">
         <item>High Priority</item>

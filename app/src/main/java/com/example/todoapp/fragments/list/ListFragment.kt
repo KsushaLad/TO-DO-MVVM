@@ -26,17 +26,14 @@ class ListFragment : Fragment(), SearchView.OnQueryTextListener {
 
     private val mToDoViewModel: ToDoViewModel by viewModels()
     private val mSharedViewModel: SharedViewModel by viewModels()
-
     private var _binding: FragmentListBinding? = null
     private val binding get() = _binding!!
-
     private val adapter: ListAdapter by lazy { ListAdapter() }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        // Data binding
         _binding = FragmentListBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = this
         binding.mSharedViewModel = mSharedViewModel
@@ -58,7 +55,7 @@ class ListFragment : Fragment(), SearchView.OnQueryTextListener {
         swipeToDelete(recyclerView) //свайп для удаления
     }
 
-    private fun swipeToDelete(recyclerView: RecyclerView) {
+    private fun swipeToDelete(recyclerView: RecyclerView) { //свайп для удаления
         val swipeToDeleteCallback = object : SwipeToDelete() {
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
                 val deletedItem = adapter.dataList[viewHolder.adapterPosition]
@@ -71,11 +68,8 @@ class ListFragment : Fragment(), SearchView.OnQueryTextListener {
         itemTouchHelper.attachToRecyclerView(recyclerView)
     }
 
-    private fun restoreDeletedData(view: View, deletedItem: ToDoData) {
-        val snackBar = Snackbar.make(
-            view, "Deleted '${deletedItem.title}'",
-            Snackbar.LENGTH_LONG
-        )
+    private fun restoreDeletedData(view: View, deletedItem: ToDoData) { //восстановление удаленных данных
+        val snackBar = Snackbar.make(view, "Deleted '${deletedItem.title}'", Snackbar.LENGTH_LONG)
         snackBar.setAction("Undo") {
             mToDoViewModel.insertData(deletedItem)
         }
@@ -84,7 +78,6 @@ class ListFragment : Fragment(), SearchView.OnQueryTextListener {
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.list_fragment_menu, menu)
-
         val search = menu.findItem(R.id.menu_search)
         val searchView = search.actionView as? SearchView
         searchView?.isSubmitButtonEnabled = true
@@ -114,12 +107,10 @@ class ListFragment : Fragment(), SearchView.OnQueryTextListener {
         return true
     }
 
-    private fun searchThroughDatabase(query: String) {
+    private fun searchThroughDatabase(query: String) { //поиск по БД
         val searchQuery = "%$query%"
-
         mToDoViewModel.searchDatabase(searchQuery).observeOnce(viewLifecycleOwner, { list ->
             list?.let {
-                Log.d("ListFragment", "searchThroughDatabase")
                 adapter.setData(it)
             }
         })
@@ -127,17 +118,13 @@ class ListFragment : Fragment(), SearchView.OnQueryTextListener {
 
     private fun confirmRemoval() { //показать AlertDialog для подтверждения удаления всех элементов из таблицы базы данных
         val builder = AlertDialog.Builder(requireContext())
-        builder.setPositiveButton("Yes") { _, _ ->
+        builder.setPositiveButton(R.string.yes) { _, _ ->
             mToDoViewModel.deleteAll()
-            Toast.makeText(
-                requireContext(),
-                "Successfully Removed Everything!",
-                Toast.LENGTH_SHORT
-            ).show()
+            Toast.makeText(requireContext(), R.string.successfully_removed_everything, Toast.LENGTH_SHORT).show()
         }
-        builder.setNegativeButton("No") { _, _ -> }
-        builder.setTitle("Delete everything?")
-        builder.setMessage("Are you sure you want to remove everything?")
+        builder.setNegativeButton(R.string.no) { _, _ -> }
+        builder.setTitle(R.string.delete_everything)
+        builder.setMessage(R.string.are_you_sure_you_want_to_remove_everything)
         builder.create().show()
     }
 

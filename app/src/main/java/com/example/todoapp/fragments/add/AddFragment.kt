@@ -16,7 +16,6 @@ class AddFragment : Fragment() {
 
     private val mToDoViewModel: ToDoViewModel by viewModels()
     private val mSharedViewModel: SharedViewModel by viewModels()
-
     private var _binding: FragmentAddBinding? = null
     private val binding get() = _binding!!
 
@@ -41,11 +40,10 @@ class AddFragment : Fragment() {
         return super.onOptionsItemSelected(item)
     }
 
-    private fun insertDataToDb() {
+    private fun insertDataToDb() { //вставка в БД
         val mTitle = binding.titleEt.text.toString()
         val mPriority = binding.prioritiesSpinner.selectedItem.toString()
         val mDescription = binding.descriptionEt.text.toString()
-
         val validation = mSharedViewModel.verifyDataFromUser(mTitle, mDescription)
         if(validation){
             val newData = ToDoData( //вставка данных в БД
