@@ -13,13 +13,13 @@ import com.example.todoapp.data.models.ToDoData
 
 class SharedViewModel(application: Application): AndroidViewModel(application) {
 
-    val emptyDatabase: MutableLiveData<Boolean> = MutableLiveData(false) //Список заметок
+    val emptyDatabase: MutableLiveData<Boolean> = MutableLiveData(false)
 
-    fun checkIfDatabaseEmpty(toDoData: List<ToDoData>){ //проверка на пустоту БД
+    fun checkIfDatabaseEmpty(toDoData: List<ToDoData>){
         emptyDatabase.value = toDoData.isEmpty()
     }
 
-    val listener: AdapterView.OnItemSelectedListener = object :  //Добавление или редактирование заметки
+    val listener: AdapterView.OnItemSelectedListener = object :
         AdapterView.OnItemSelectedListener{
         override fun onNothingSelected(p0: AdapterView<*>?) {}
         override fun onItemSelected(
@@ -36,7 +36,7 @@ class SharedViewModel(application: Application): AndroidViewModel(application) {
         }
     }
 
-    fun verifyDataFromUser(title: String, description: String): Boolean { //проверка данных пользователем
+    fun verifyDataFromUser(title: String, description: String): Boolean {
         return !(title.isEmpty() || description.isEmpty())
     }
 

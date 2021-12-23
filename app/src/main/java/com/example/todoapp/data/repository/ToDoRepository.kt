@@ -7,10 +7,10 @@ import com.example.todoapp.data.models.ToDoData
 class ToDoRepository(private val toDoDao: ToDoDao) {
 
     val getAllData: LiveData<List<ToDoData>> = toDoDao.getAllData() //получение всех данных
-    val sortByHighPriority: LiveData<List<ToDoData>> = toDoDao.sortByHighPriority() //сортировка по высшей приоритетности
-    val sortByLowPriority: LiveData<List<ToDoData>> = toDoDao.sortByLowPriority() //сортировка по низкой приоритетности
+    val sortByHighPriority: LiveData<List<ToDoData>> = toDoDao.sortByHighPriority() //сортировка по высшему приоритету
+    val sortByLowPriority: LiveData<List<ToDoData>> = toDoDao.sortByLowPriority() //сортировка по низшему приоритету
 
-    suspend fun insertData(toDoData: ToDoData){ //встака данных
+    suspend fun insertData(toDoData: ToDoData){ //вставка данных
         toDoDao.insertData(toDoData)
     }
 
@@ -22,11 +22,11 @@ class ToDoRepository(private val toDoDao: ToDoDao) {
         toDoDao.deleteItem(toDoData)
     }
 
-    suspend fun deleteAll(){ //удаление всех
+    suspend fun deleteAll(){ //удаление всего
         toDoDao.deleteAll()
     }
 
-    fun searchDatabase(searchQuery: String): LiveData<List<ToDoData>> { //поиск базы данных
+    fun searchDatabase(searchQuery: String): LiveData<List<ToDoData>> { //поиск по БД
         return toDoDao.searchDatabase(searchQuery)
     }
 

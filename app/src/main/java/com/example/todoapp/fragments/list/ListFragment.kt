@@ -30,10 +30,7 @@ class ListFragment : Fragment(), SearchView.OnQueryTextListener {
     private val binding get() = _binding!!
     private val adapter: ListAdapter by lazy { ListAdapter() }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentListBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = this
         binding.mSharedViewModel = mSharedViewModel
@@ -52,25 +49,25 @@ class ListFragment : Fragment(), SearchView.OnQueryTextListener {
         val recyclerView = binding.recyclerView
         recyclerView.adapter = adapter
         recyclerView.layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
-        swipeToDelete(recyclerView) //свайп для удаления
+        swipeToDelete(recyclerView)
     }
 
-    private fun swipeToDelete(recyclerView: RecyclerView) { //свайп для удаления
+    private fun swipeToDelete(recyclerView: RecyclerView) {
         val swipeToDeleteCallback = object : SwipeToDelete() {
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
                 val deletedItem = adapter.dataList[viewHolder.adapterPosition]
-                mToDoViewModel.deleteItem(deletedItem) //удаление Item
+                mToDoViewModel.deleteItem(deletedItem)
                 adapter.notifyItemRemoved(viewHolder.adapterPosition)
-                restoreDeletedData(viewHolder.itemView, deletedItem) //восстановление удаленных объектов
+                restoreDeletedData(viewHolder.itemView, deletedItem)
             }
         }
         val itemTouchHelper = ItemTouchHelper(swipeToDeleteCallback)
         itemTouchHelper.attachToRecyclerView(recyclerView)
     }
 
-    private fun restoreDeletedData(view: View, deletedItem: ToDoData) { //восстановление удаленных данных
+    private fun restoreDeletedData(view: View, deletedItem: ToDoData) {
         val snackBar = Snackbar.make(view, "Deleted '${deletedItem.title}'", Snackbar.LENGTH_LONG)
-        snackBar.setAction("Undo") {
+        snackBar.setAction(R.string.undo) {
             mToDoViewModel.insertData(deletedItem)
         }
         snackBar.show()
@@ -107,7 +104,7 @@ class ListFragment : Fragment(), SearchView.OnQueryTextListener {
         return true
     }
 
-    private fun searchThroughDatabase(query: String) { //поиск по БД
+    private fun searchThroughDatabase(query: String) {
         val searchQuery = "%$query%"
         mToDoViewModel.searchDatabase(searchQuery).observeOnce(viewLifecycleOwner, { list ->
             list?.let {
@@ -115,6 +112,7 @@ class ListFragment : Fragment(), SearchView.OnQueryTextListener {
             }
         })
     }
+
 
     private fun confirmRemoval() { //показать AlertDialog для подтверждения удаления всех элементов из таблицы базы данных
         val builder = AlertDialog.Builder(requireContext())

@@ -8,11 +8,11 @@
     tools:context=".fragments.add.AddFragment">
 
 
-    <com.google.android.material.textfield.TextInputEditText
+    <EditText
         android:id="@+id/title_et"
         android:layout_width="0dp"
         android:layout_height="60dp"
-        android:background="@drawable/custom_input_2"
+        android:background="@drawable/add_item"
         android:ems="10"
         android:hint="@string/title"
         android:inputType="textPersonName"
@@ -28,7 +28,7 @@
         android:layout_width="0dp"
         android:layout_height="60dp"
         android:layout_marginTop="8dp"
-        android:background="@drawable/custom_input_2"
+        android:background="@drawable/add_item"
         android:entries="@array/priorities"
         android:paddingStart="20dp"
         android:paddingEnd="20dp"
@@ -37,12 +37,12 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/title_et" />
 
-    <com.google.android.material.textfield.TextInputEditText
+    <EditText
         android:id="@+id/description_et"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="8dp"
-        android:background="@drawable/custom_input_2"
+        android:background="@drawable/add_item"
         android:ems="10"
         android:gravity="top|start"
         android:hint="@string/description"

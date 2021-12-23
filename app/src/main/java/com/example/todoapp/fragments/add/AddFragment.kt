@@ -14,18 +14,15 @@ import com.example.todoapp.fragments.SharedViewModel
 
 class AddFragment : Fragment() {
 
-    private val mToDoViewModel: ToDoViewModel by viewModels()
-    private val mSharedViewModel: SharedViewModel by viewModels()
+    private val toDoViewModel: ToDoViewModel by viewModels()
+    private val sharedViewModel: SharedViewModel by viewModels()
     private var _binding: FragmentAddBinding? = null
     private val binding get() = _binding!!
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentAddBinding.inflate(layoutInflater, container, false)
         setHasOptionsMenu(true)
-        binding.prioritiesSpinner.onItemSelectedListener = mSharedViewModel.listener //прослушиватель выбранного элемента
+        binding.prioritiesSpinner.onItemSelectedListener = sharedViewModel.listener
         return binding.root
     }
 
@@ -40,22 +37,18 @@ class AddFragment : Fragment() {
         return super.onOptionsItemSelected(item)
     }
 
-    private fun insertDataToDb() { //вставка в БД
-        val mTitle = binding.titleEt.text.toString()
-        val mPriority = binding.prioritiesSpinner.selectedItem.toString()
-        val mDescription = binding.descriptionEt.text.toString()
-        val validation = mSharedViewModel.verifyDataFromUser(mTitle, mDescription)
+    private fun insertDataToDb() {
+        val title = binding.titleEt.text.toString()
+        val priority = binding.prioritiesSpinner.selectedItem.toString()
+        val description = binding.descriptionEt.text.toString()
+        val validation = sharedViewModel.verifyDataFromUser(title, description)
         if(validation){
-            val newData = ToDoData( //вставка данных в БД
-                0,
-                mTitle,
-                mSharedViewModel.parsePriority(mPriority),
-                mDescription)
-            mToDoViewModel.insertData(newData)
-            Toast.makeText(requireContext(), "Successfully added!", Toast.LENGTH_SHORT).show()
-            findNavController().navigate(R.id.action_addFragment_to_listFragment) //обратная навигация
+            val newData = ToDoData(0, title, sharedViewModel.parsePriority(priority), description)
+            toDoViewModel.insertData(newData)
+            Toast.makeText(requireContext(), R.string.successfully_added, Toast.LENGTH_SHORT).show()
+            findNavController().navigate(R.id.action_addFragment_to_listFragment)
         }else{
-            Toast.makeText(requireContext(), "Please fill out all fields.", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), R.string.please_fill_out_all_fields, Toast.LENGTH_SHORT).show()
         }
     }
 

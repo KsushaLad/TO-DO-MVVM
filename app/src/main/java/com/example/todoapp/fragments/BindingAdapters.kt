@@ -19,7 +19,7 @@ class BindingAdapters {
 
         @BindingAdapter("android:navigateToAddFragment")
         @JvmStatic
-        fun navigateToAddFragment(view: FloatingActionButton, navigate: Boolean){ //навигация для добавления фрагмента
+        fun navigateToAddFragment(view: FloatingActionButton, navigate: Boolean){
             view.setOnClickListener {
                 if(navigate){
                     view.findNavController().navigate(R.id.action_listFragment_to_addFragment)
@@ -28,7 +28,7 @@ class BindingAdapters {
         }
         @BindingAdapter("android:emptyDatabase")
         @JvmStatic
-        fun emptyDatabase(view: View, emptyDatabase: MutableLiveData<Boolean>){ //пустая БД
+        fun emptyDatabase(view: View, emptyDatabase: MutableLiveData<Boolean>){
             when(emptyDatabase.value){
                 true -> view.visibility = View.VISIBLE
                 false -> view.visibility = View.INVISIBLE
@@ -55,7 +55,7 @@ class BindingAdapters {
         }
         @BindingAdapter("android:sendDataToUpdateFragment")
         @JvmStatic
-        fun sendDataToUpdateFragment(view: ConstraintLayout, currentItem: ToDoData){ //отправление данных для обновления фрагмента
+        fun sendDataToUpdateFragment(view: ConstraintLayout, currentItem: ToDoData){
             view.setOnClickListener {
                 val action = ListFragmentDirections.actionListFragmentToUpdateFragment(currentItem)
                 view.findNavController().navigate(action)
@@ -63,5 +63,4 @@ class BindingAdapters {
         }
 
     }
-
 }

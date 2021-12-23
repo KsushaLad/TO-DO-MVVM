@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="width">0dp</dimen>
+    <dimen name="padding">24dp</dimen>
+    <dimen name="height">60dp</dimen>
+    <dimen name="margin_top">8dp</dimen>
+    <dimen name="padding_start">20dp</dimen>
+    <dimen name="image_size">25dp</dimen>
+    <dimen name="image_width">100dp</dimen>
+    <dimen name="margin_top1">12dp</dimen>
+    <dimen name="text_size">16sp</dimen>
+    <dimen name="margin">4dp</dimen>
+    <dimen name="width_card">16dp</dimen>
+    <dimen name="text">20sp</dimen>
+</resources>
