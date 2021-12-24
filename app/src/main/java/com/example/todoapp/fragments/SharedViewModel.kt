@@ -15,7 +15,7 @@ class SharedViewModel(application: Application): AndroidViewModel(application) {
 
     val emptyDatabase: MutableLiveData<Boolean> = MutableLiveData(false)
 
-    fun checkIfDatabaseEmpty(toDoData: List<ToDoData>){
+    fun checkIfDatabaseEmpty(toDoData: List<ToDoData>){ //проверка на пустоту БД
         emptyDatabase.value = toDoData.isEmpty()
     }
 
@@ -36,15 +36,15 @@ class SharedViewModel(application: Application): AndroidViewModel(application) {
         }
     }
 
-    fun verifyDataFromUser(title: String, description: String): Boolean {
+    fun verifyDataFromUser(title: String, description: String): Boolean { //проверка данных от пользователя
         return !(title.isEmpty() || description.isEmpty())
     }
 
     fun parsePriority(priority: String): Priority {
         return when(priority){
-            "High Priority" -> { Priority.HIGH }
-            "Medium Priority" -> { Priority.MEDIUM }
-            "Low Priority" -> { Priority.LOW }
+            "Высокий приоритет" -> { Priority.HIGH }
+            "Средний приоритет" -> { Priority.MEDIUM }
+            "Низкий приоритет" -> { Priority.LOW }
             else -> Priority.LOW
         }
     }

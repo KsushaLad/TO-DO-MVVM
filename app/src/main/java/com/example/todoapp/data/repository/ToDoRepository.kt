@@ -29,5 +29,4 @@ class ToDoRepository(private val toDoDao: ToDoDao) {
     fun searchDatabase(searchQuery: String): LiveData<List<ToDoData>> { //поиск по БД
         return toDoDao.searchDatabase(searchQuery)
     }
-
 }

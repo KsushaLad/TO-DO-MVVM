@@ -17,8 +17,8 @@ import com.example.todoapp.fragments.SharedViewModel
 class UpdateFragment : Fragment() {
 
     private val args by navArgs<UpdateFragmentArgs>()
-    private val mSharedViewModel: SharedViewModel by viewModels()
-    private val mToDoViewModel: ToDoViewModel by viewModels()
+    private val sharedViewModel: SharedViewModel by viewModels()
+    private val toDoViewModel: ToDoViewModel by viewModels()
     private var _binding: FragmentUpdateBinding? = null
     private val binding get() = _binding!!
 
@@ -26,7 +26,7 @@ class UpdateFragment : Fragment() {
         _binding = FragmentUpdateBinding.inflate(inflater, container, false)
         binding.args = args
         setHasOptionsMenu(true)
-        binding.currentPrioritiesSpinner.onItemSelectedListener = mSharedViewModel.listener
+        binding.currentPrioritiesSpinner.onItemSelectedListener = sharedViewModel.listener
         return binding.root
     }
 
@@ -42,14 +42,14 @@ class UpdateFragment : Fragment() {
         return super.onOptionsItemSelected(item)
     }
 
-    private fun updateItem() {
+    private fun updateItem() { //обновление Item
         val title = binding.currentTitleEt.text.toString()
         val description = binding.currentDescriptionEt.text.toString()
         val getPriority = binding.currentPrioritiesSpinner.selectedItem.toString()
-        val validation = mSharedViewModel.verifyDataFromUser(title, description)
+        val validation = sharedViewModel.verifyDataFromUser(title, description)
         if (validation) {
-            val updatedItem = ToDoData(args.currentItem.id, title, mSharedViewModel.parsePriority(getPriority), description)
-            mToDoViewModel.updateData(updatedItem)
+            val updatedItem = ToDoData(args.currentItem.id, title, sharedViewModel.parsePriority(getPriority), description)
+            toDoViewModel.updateData(updatedItem)
             Toast.makeText(requireContext(), R.string.successfully_updated, Toast.LENGTH_SHORT).show()
             findNavController().navigate(R.id.action_updateFragment_to_listFragment)
         } else {
@@ -58,16 +58,16 @@ class UpdateFragment : Fragment() {
     }
 
 
-    private fun confirmItemRemoval() {
+    private fun confirmItemRemoval() { //показать AlertDialog для подтверждения удаления всех элементов из таблицы базы данных
         val builder = AlertDialog.Builder(requireContext())
         builder.setPositiveButton(R.string.yes) { _, _ ->
-            mToDoViewModel.deleteItem(args.currentItem)
-            Toast.makeText(requireContext(), "Successfully Removed: ${args.currentItem.title}", Toast.LENGTH_SHORT).show()
+            toDoViewModel.deleteItem(args.currentItem)
+            Toast.makeText(requireContext(), "Успешно удалено: ${args.currentItem.title}", Toast.LENGTH_SHORT).show()
             findNavController().navigate(R.id.action_updateFragment_to_listFragment)
         }
         builder.setNegativeButton(R.string.no) { _, _ -> }
-        builder.setTitle("Delete '${args.currentItem.title}'?")
-        builder.setMessage("Are you sure you want to remove '${args.currentItem.title}'?")
+        builder.setTitle("Удалить '${args.currentItem.title}'?")
+        builder.setMessage("Вы уверены, что хотите удалить '${args.currentItem.title}'?")
         builder.create().show()
     }
 

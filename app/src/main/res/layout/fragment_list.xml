@@ -17,10 +17,10 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_width="@dimen/width"
+            android:layout_height="@dimen/width"
             android:clipToPadding="false"
-            android:paddingTop="8dp"
+            android:paddingTop="@dimen/margin_top"
             android:layoutAnimation="@anim/recyclerview_anim"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -32,23 +32,23 @@
             android:id="@+id/floatingActionButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="24dp"
-            android:layout_marginBottom="24dp"
+            android:layout_marginEnd="@dimen/padding"
+            android:layout_marginBottom="@dimen/padding"
             android:clickable="true"
             android:focusable="true"
             android:navigateToAddFragment="@{true}"
-            app:backgroundTint="#9500FF"
+            app:backgroundTint="@color/viol"
             android:src="@drawable/ic_add"
-            app:maxImageSize="26dp"
+            app:maxImageSize="@dimen/image_size"
             android:tint="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             tools:ignore="ContentDescription" />
 
-        <ImageView
+        <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/no_data_imageView"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="@dimen/image_width"
+            android:layout_height="@dimen/image_width"
             android:emptyDatabase="@{mSharedViewModel.emptyDatabase}"
             android:src="@drawable/ic_no_data"
             android:visibility="invisible"
@@ -58,15 +58,15 @@
             app:layout_constraintTop_toTopOf="@+id/recyclerView"
             app:layout_constraintVertical_bias="0.37" />
 
-        <TextView
+        <com.google.android.material.textview.MaterialTextView
             android:id="@+id/no_data_textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="@dimen/margin_top1"
             android:alpha="0.5"
             android:emptyDatabase="@{mSharedViewModel.emptyDatabase}"
             android:text="@string/no_data"
-            android:textSize="16sp"
+            android:textSize="@dimen/text_size"
             android:visibility="invisible"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/recyclerView"

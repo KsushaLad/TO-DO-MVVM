@@ -10,4 +10,9 @@
     <color name="red">#FF4646</color>
     <color name="yellow">#FFC114</color>
     <color name="green">#00C980</color>
+    <color name="violet">#C195FF</color>
+    <color name="gray_1">#BDBDBD</color>
+    <color name="violet_1">#DDC4FF</color>
+    <color name="violet_2">#D4B6FF</color>
+    <color name="viol">#9500FF</color>
 </resources>

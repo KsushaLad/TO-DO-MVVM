@@ -12,4 +12,6 @@
     <dimen name="margin">4dp</dimen>
     <dimen name="width_card">16dp</dimen>
     <dimen name="text">20sp</dimen>
+    <dimen name="stroke_width">1dp</dimen>
+    <dimen name="radius">5dp</dimen>
 </resources>

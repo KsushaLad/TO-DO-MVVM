@@ -7,7 +7,7 @@ import kotlinx.parcelize.Parcelize
 
 @Entity(tableName = "todo_table")
 @Parcelize
-data class ToDoData( //данные
+data class ToDoData( //данные каждого Item
     @PrimaryKey(autoGenerate = true)
     var id: Int,
     var title: String,

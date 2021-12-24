@@ -37,7 +37,7 @@ class AddFragment : Fragment() {
         return super.onOptionsItemSelected(item)
     }
 
-    private fun insertDataToDb() {
+    private fun insertDataToDb() { //вставка данных в БД
         val title = binding.titleEt.text.toString()
         val priority = binding.prioritiesSpinner.selectedItem.toString()
         val description = binding.descriptionEt.text.toString()

@@ -17,7 +17,7 @@ abstract class ToDoDatabase : RoomDatabase() {
         @Volatile
         private var INSTANCE: ToDoDatabase? = null
 
-        fun getDatabase(context: Context): ToDoDatabase = INSTANCE ?: synchronized(this) { INSTANCE
+        fun getDatabase(context: Context): ToDoDatabase = INSTANCE ?: synchronized(this) { INSTANCE //получение БД
                     ?: buildDatabase(context).also { INSTANCE = it }
             }
 

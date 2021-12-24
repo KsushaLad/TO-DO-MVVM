@@ -40,7 +40,7 @@ class ListAdapter : RecyclerView.Adapter<ListAdapter.MyViewHolder>() {
         holder.bind(currentItem)
     }
 
-    fun setData(toDoData: List<ToDoData>){
+    fun setData(toDoData: List<ToDoData>){ //набор данных
         val toDoDiffUtil = ToDoDiffUtil(dataList, toDoData)
         val toDoDiffResult = DiffUtil.calculateDiff(toDoDiffUtil)
         this.dataList = toDoData

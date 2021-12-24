@@ -1,32 +1,32 @@
 <resources>
     <string name="app_name">ToDo App</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="no_data">No Data</string>
+    <string name="no_data">Нет данных</string>
 
-    <string name="title">Title</string>
-    <string name="description">Description</string>
-    <string name="search">Search</string>
-    <string name="sort_by">Sort By</string>
-    <string name="priority_high">Priority High</string>
-    <string name="priority_low">Priority Low</string>
-    <string name="delete_all">Delete All</string>
-    <string name="add">Add</string>
-    <string name="save">Save</string>
-    <string name="delete">Delete</string>
-    <string name="successfully_added">Successfully added!</string>
-    <string name="please_fill_out_all_fields">Please fill out all fields.</string>
-    <string name="yes">Yes</string>
-    <string name="successfully_removed_everything">Successfully Removed Everything!</string>
-    <string name="no">No</string>
-    <string name="delete_everything">Delete everything?</string>
-    <string name="are_you_sure_you_want_to_remove_everything">Are you sure you want to remove everything?</string>
-    <string name="successfully_updated">Successfully updated!</string>
-    <string name="undo">Undo</string>
+    <string name="title">Заголовок</string>
+    <string name="description">Описание</string>
+    <string name="search">Поиск</string>
+    <string name="sort_by">Сортировать по</string>
+    <string name="priority_high">Высокий приоритет</string>
+    <string name="priority_low">Низкий приоритет</string>
+    <string name="delete_all">Удалить всё</string>
+    <string name="add">Добавить</string>
+    <string name="save">Сохранить</string>
+    <string name="delete">Удалить</string>
+    <string name="successfully_added">Успешно добавлено!</string>
+    <string name="please_fill_out_all_fields">Пожалуйста, заполните все поля.</string>
+    <string name="yes">Да</string>
+    <string name="successfully_removed_everything">Успешно удалено все!</string>
+    <string name="no">Нет</string>
+    <string name="delete_everything">Удалить все?</string>
+    <string name="are_you_sure_you_want_to_remove_everything">Вы уверены, что хотите удалить все?</string>
+    <string name="successfully_updated">Успешно обновлено!</string>
+    <string name="undo">Отменить</string>
 
 
     <string-array name="priorities">
-        <item>High Priority</item>
-        <item>Medium Priority</item>
-        <item>Low Priority</item>
+        <item>Высокий приоритет</item>
+        <item>Средний приоритет</item>
+        <item>Низкий приоритет</item>
     </string-array>
 </resources>
