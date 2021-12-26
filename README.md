@@ -1,4 +1,4 @@
-# Notes App.
+# To Do App.
 # Use:
 * ### Kotlin;
 * ### MVVM;
@@ -6,3 +6,5 @@
 * ### View Model;
 * ### Room;
 * ### Material Design.
+#
+![Screenshot](preview.jpg)
