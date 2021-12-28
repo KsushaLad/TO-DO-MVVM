@@ -20,14 +20,14 @@ class UpdateFragment : Fragment() {
     private val sharedViewModel: SharedViewModel by viewModels()
     private val toDoViewModel: ToDoViewModel by viewModels()
     private var _binding: FragmentUpdateBinding? = null
-    private val binding get() = _binding!!
+    private val binding get() = _binding
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         _binding = FragmentUpdateBinding.inflate(inflater, container, false)
-        binding.args = args
+        binding?.args = args
         setHasOptionsMenu(true)
-        binding.currentPrioritiesSpinner.onItemSelectedListener = sharedViewModel.listener
-        return binding.root
+        binding?.currentPrioritiesSpinner?.onItemSelectedListener = sharedViewModel.listener
+        return binding?.root
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -43,9 +43,9 @@ class UpdateFragment : Fragment() {
     }
 
     private fun updateItem() { //обновление Item
-        val title = binding.currentTitleEt.text.toString()
-        val description = binding.currentDescriptionEt.text.toString()
-        val getPriority = binding.currentPrioritiesSpinner.selectedItem.toString()
+        val title = binding?.currentTitleEt?.text.toString()
+        val description = binding?.currentDescriptionEt?.text.toString()
+        val getPriority = binding?.currentPrioritiesSpinner?.selectedItem.toString()
         val validation = sharedViewModel.verifyDataFromUser(title, description)
         if (validation) {
             val updatedItem = ToDoData(args.currentItem.id, title, sharedViewModel.parsePriority(getPriority), description)

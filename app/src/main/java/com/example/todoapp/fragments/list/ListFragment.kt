@@ -25,29 +25,29 @@ class ListFragment : Fragment(), SearchView.OnQueryTextListener {
     private val toDoViewModel: ToDoViewModel by viewModels()
     private val sharedViewModel: SharedViewModel by viewModels()
     private var _binding: FragmentListBinding? = null
-    private val binding get() = _binding!!
+    private val binding get() = _binding
     private val adapter: ListAdapter by lazy { ListAdapter() }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         _binding = FragmentListBinding.inflate(inflater, container, false)
-        binding.lifecycleOwner = this
-        binding.mSharedViewModel = sharedViewModel
+        binding?.lifecycleOwner = this
+        binding?.mSharedViewModel = sharedViewModel
         setupRecyclerview()
         toDoViewModel.getAllData.observe(viewLifecycleOwner, { data ->
             sharedViewModel.checkIfDatabaseEmpty(data)
             adapter.setData(data)
-            binding.recyclerView.scheduleLayoutAnimation()
+            binding?.recyclerView?.scheduleLayoutAnimation()
         })
         setHasOptionsMenu(true)
         hideKeyboard(requireActivity())
-        return binding.root
+        return binding?.root
     }
 
     private fun setupRecyclerview() {
-        val recyclerView = binding.recyclerView
-        recyclerView.adapter = adapter
-        recyclerView.layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
-        swipeToDelete(recyclerView)
+        val recyclerView = binding?.recyclerView
+        recyclerView?.adapter = adapter
+        recyclerView?.layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
+        recyclerView?.let { swipeToDelete(it) }
     }
 
     private fun swipeToDelete(recyclerView: RecyclerView) { //свайп для удаления

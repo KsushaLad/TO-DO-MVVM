@@ -11,8 +11,9 @@
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/title_et"
         android:layout_width="@dimen/width"
-        android:layout_height="@dimen/height"
+        android:layout_height="wrap_content"
         android:background="@drawable/add_item"
+        android:padding="@dimen/width_card"
         android:ems="10"
         android:hint="@string/title"
         android:inputType="textPersonName"
@@ -26,10 +27,11 @@
     <Spinner
         android:id="@+id/priorities_spinner"
         android:layout_width="@dimen/width"
-        android:layout_height="@dimen/height"
+        android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_top"
         android:background="@drawable/add_item"
         android:entries="@array/priorities"
+        android:padding="@dimen/width_card"
         android:paddingStart="@dimen/padding_start"
         android:paddingEnd="@dimen/padding_start"
         app:layout_constraintEnd_toEndOf="parent"
@@ -52,7 +54,8 @@
         android:paddingEnd="@dimen/padding"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/priorities_spinner" />
+        app:layout_constraintTop_toBottomOf="@+id/priorities_spinner"
+        app:layout_constraintVertical_bias="1.0" />
 </androidx.constraintlayout.widget.ConstraintLayout>

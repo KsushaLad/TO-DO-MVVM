@@ -14,4 +14,5 @@
     <dimen name="text">20sp</dimen>
     <dimen name="stroke_width">1dp</dimen>
     <dimen name="radius">5dp</dimen>
+    <dimen name="pad">10dp</dimen>
 </resources>
